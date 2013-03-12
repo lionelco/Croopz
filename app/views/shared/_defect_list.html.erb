@@ -1,0 +1,25 @@
+<h1>Listing defects</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Impact</th>
+    <th>Target</th>@
+  </tr>
+
+<% @defects.each do |defect| %>
+  <tr>
+    <td><%= link_to defect.name, defect %></td>
+    <td><%= defect.description %></td>
+    <td><%= defect.impact %></td>
+    <td><%= defect.target_id %></td>
+    <td>|<%= link_to 'Edit', edit_defect_path(defect) %></td>
+    <td>|<%= link_to 'Destroy', defect, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+  </tr>
+<% end %>
+</table>
+
+
+<br />

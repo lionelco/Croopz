@@ -64,5 +64,8 @@ module SampleApp
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    #LCO: To include these js files on each of our pages
+    #config.action_view.JavaScript_expansions[:defaults] = %w(jquery rails application)  
   end
 end

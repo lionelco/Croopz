@@ -1,0 +1,29 @@
+<h1>Listing companies</h1>
+
+<table class="table table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+
+<% @companies.each do |company| %>
+  <tr>
+    <td><%= company.name, company %></td>
+    <td><%= company.description %></td>
+    <td>
+      <% if current_user.admin? && current_user.company_id != nil %>
+      <%= link_to 'Edit', edit_company_path(company), class: "btn" %>
+      <% end %>
+    </td>
+    <td>
+      <% if current_user.admin? && current_user.company_id != nil %>
+      <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger" %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Company', new_company_path %>

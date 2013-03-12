@@ -1,0 +1,31 @@
+<h1>Select a Process</h1>
+ <center>
+ 	<table class="table table-hover">
+<% @targets.each do |target| %>
+  	<tbody>
+    <tr>
+    <td><h2><b><%= link_to target.name , target_path(target) %></b></h2></td>
+    <td><h2><%= target.description %></h2></td>
+    <td>
+    	<% if current_user.admin? && current_user.company_id != nil %>
+    	<%= link_to 'Edit', edit_target_path(target), class: "btn" %>
+    	<% end %>
+    </td>
+    <td>
+    	<% if current_user.admin? && current_user.company_id != nil %>
+    	<%= link_to 'Destroy', target, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger" %>
+    	<% end %>
+    </td>
+  </tr>
+  </tbody>
+<% end %>
+</table>
+ </center>
+
+<br />
+
+
+
+
+
+

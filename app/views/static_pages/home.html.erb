@@ -1,13 +1,28 @@
-<div class="center hero-unit">
-  <h1>Welcome to the Sample App</h1>
+<% if signed_in? %>
+  <% if current_user.company_id == nil %>
+    <div class="alert alert-block">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4>Warning! Please create your company...</h4>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="span12">
+        <%= render 'shared/target_list' %>
+    </div>
+  </div>
 
-  <h2>
-    This is the home page for the
-    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-    sample application.
-  </h2>
+<% else %>
+  <div class="center hero-unit">
+    <h1>CROOPZ Application</h1>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-</div>
+    <h2>
+      This is prototype of application to improve your Business !
+    </h2>
 
-<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+    <%= link_to "Sign up now!", signup_path, 
+                                class: "btn btn-large btn-primary" %>
+ </div>
+<br><br><br><br><br><br><br>
+  <%#= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+<% end %>
+

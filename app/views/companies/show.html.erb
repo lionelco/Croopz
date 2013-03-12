@@ -1,0 +1,25 @@
+<p>
+  <b>Name:</b>
+  <%= @company.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @company.description %>
+</p>
+
+<p>
+  <b>Created by</b>
+  <%= @company.created_by %>
+</p>
+
+<p>
+  <b>Process:</b>
+  <%= @target %>
+</p>
+
+<%#= link_to "New Process", new_company_target_path(:company_id => @company.id), 
+							 class: "btn btn-large btn-primary" %>
+
+<%= link_to "New Process", new_target_path(:company_id => @company.id), 
+							 class: "btn btn-large btn-primary" %>

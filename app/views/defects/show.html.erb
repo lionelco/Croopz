@@ -1,0 +1,25 @@
+<p>
+  <b>Name:</b>
+  <%= @defect.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @defect.description %>
+</p>
+
+<p>
+  <b>Target:</b>
+  <%= @defect.target_id %>
+</p>
+
+<p>
+  <b>Nb of Occurrence:</b>
+  <%#= Occurrence.where("defect_id = ?", @defect.id).count %>
+</p>
+
+<%#= link_to "Create a new Occurrence",new_defect_occurrence_path(:defect_id => @defect.id), 
+							 class: "btn btn-large btn-primary" %>
+
+<%= link_to "Create a new Occurrence",new_occurrence_path(:defect_id => @defect.id), 
+							 class: "btn btn-large btn-primary" %>

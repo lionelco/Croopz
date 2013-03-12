@@ -1,0 +1,31 @@
+<h1>Listing defects</h1>
+
+<table class="table table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Target</th>
+  </tr>
+
+<% @defects.each do |defect| %>
+
+  <tr>
+    <td><%= link_to defect.name, defect %></td>
+    <td><%= defect.description %></td>
+    <td><%= Target.find(defect.target_id).name %></td>
+    <td>
+      <% if current_user.admin? && current_user.company_id != nil %>
+      <%= link_to 'Edit', edit_defect_path(defect), class: "btn" %>
+      <% end %>
+    </td>
+    <td>
+      <% if current_user.admin? && current_user.company_id != nil %>
+      <%= link_to 'Destroy', defect, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger" %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+
+<br />

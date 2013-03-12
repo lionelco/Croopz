@@ -1,7 +1,29 @@
 SampleApp::Application.routes.draw do
-  resources :users
-  resources :sessions, only: [:new, :create, :destroy]
 
+  
+
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  
+    resources :users
+    resources :sessions,   only: [:new, :create, :destroy]
+    resources :microposts, only: [:create, :destroy]
+
+    resources :companies
+    resources :targets
+    resources :defects
+    resources :occurrences
+    resources :suggestions
+  #resources :companies, shallow: true do
+  #  resources :targets do 
+  #    resources :defects do
+  #      resources :occurrences
+  #    end
+  #  end
+  #end
+  
+  #root to: 'targets#index'
   root to: 'static_pages#home'
 
   match '/signup',  to: 'users#new'
@@ -10,7 +32,12 @@ SampleApp::Application.routes.draw do
   match '/help',    to: 'static_pages#help'
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
-  
+
+  resources :targets do
+    collection do
+      get 'remove_all'
+    end
+  end
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
@@ -72,4 +99,5 @@ SampleApp::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+
 end

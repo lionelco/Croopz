@@ -1,0 +1,33 @@
+<p>
+  <b>Number:</b>
+  <%= @occurrence.number %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @occurrence.description %>
+</p>
+
+<p>
+  <b>Defect:</b>
+  <%= @occurrence.defect_id %>
+</p>
+
+<p>
+  <b>Target:</b>
+  <%= @occurrence.target_id %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%= @occurrence.company_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @occurrence.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_occurrence_path(@occurrence) %> |
+<%= link_to 'Back', occurrence_path %>
