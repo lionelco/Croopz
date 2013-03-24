@@ -38,19 +38,22 @@ end
     def create
       @user = User.new(params[:user])
 
-    if current_user.admin? && current_user.company_id != nil
+    if signed_in?
+      if current_user.admin? && current_user.company_id != nil
       @user.company_id = current_user.company_id
-      if @user.save
-        u_sign_in current_user
-        flash[:success] = "A new user has been created!"
-        redirect_to @user
-      else
-        render 'new'
-      end      
+      @user.admin = false
+        if @user.save
+          u_sign_in current_user
+          flash[:success] = "A new user has been created!"
+          redirect_to @user
+        else
+          render 'new'
+        end 
+      end   
     else
       if @user.save
         u_sign_in @user
-        flash[:success] = "Welcome to the Sample App!"
+        flash[:success] = "Welcome to the Croopz!"
         redirect_to @user
       else
         render 'new'

@@ -80,10 +80,12 @@
     <p>
       <%= high_chart("my_id", @h) %>
     </p>
-    <p align=right>
-      <%= link_to "Remove All", remove_all_targets_path(@target.id), :confirm => 'Are you
+    <% if current_user.admin? && current_user.company_id != nil %>
+      <p align=right>
+        <%= link_to "Remove All", remove_all_targets_path(@target.id), :confirm => 'Are you
 sure?', :method => :get , class: "btn btn-danger" %>
-    </p>
+      </p>
+    <% end %>
   </div>
 </div>
 

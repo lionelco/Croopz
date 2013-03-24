@@ -1,10 +1,10 @@
 <% if signed_in? %>
   <% if current_user.company_id == nil %>
     <div class="alert alert-block">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <h4>Warning! Please create your company...</h4>
-    </div>
-  <% end %>
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4>Warning! Please create your company...</h4>
+      </div>
+    <% end %>
   <div class="row">
     <div class="span12">
         <%= render 'shared/target_list' %>
@@ -13,16 +13,23 @@
 
 <% else %>
   <div class="center hero-unit">
-    <h1>CROOPZ Application</h1>
-
-    <h2>
-      This is prototype of application to improve your Business !
-    </h2>
-
-    <%= link_to "Sign up now!", signup_path, 
+    <h1>CROOPZ</h1>
+      <%= link_to "Sign up now!", signup_path, 
                                 class: "btn btn-large btn-primary" %>
  </div>
-<br><br><br><br><br><br><br>
-  <%#= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+     <h2> 
+      <br>Our minds are not structured to assess the likelihood of rare events. 
+      <br>We overestimate the visible ones, such as tsunamis and terrorist attacks, and ignore the ones of which we are unaware
+      </h2>
+<br>
+<br> 
+<br>
+<br>
 <% end %>
 
