@@ -1,24 +1,26 @@
 <h1>Listing suggestions</h1>
 
 <table class="table table-hover">
+  <p align=right>
+    <%= link_to 'Export to Excel', url_for(:format => 'xls'), class: "btn btn-success"%>
+  </p>    
   <tr>
-    <th>Number</th>
+    <th>User</th>
     <th>Description</th>
-    <th>Defect</th>
     <th>Target</th>
     <th>Company</th>
-    <th></th>
+    <th>Date</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @suggestions.each do |suggestion| %>
   <tr>
-    <td><%= suggestion.number %></td>
+    <td><%= User.find(suggestion.user_id).name %></td>
     <td><%= suggestion.description %></td>
-    <td><%= suggestion.defect_id %></td>
-    <td><%= suggestion.target_id %></td>
-    <td><%= suggestion.company_id %></td>
+    <td><%= Target.find(suggestion.target_id).name %></td>
+    <td><%= Company.find(suggestion.company_id).name %></td>
+    <td><%= suggestion.created_at %></td>
     <td>
       <% if current_user.admin? && current_user.company_id != nil %>
       <%= link_to 'Edit', edit_suggestion_path(suggestion), class: "btn" %>

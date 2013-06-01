@@ -5,16 +5,16 @@ class OccurrencesController < ApplicationController
 
   def index
 
-    @occurrences = Occurrence.where("company_id = ?", current_user.company_id)
-
+    @occurrences = Occurrence.where("company_id = ?", current_user.company_id) # :user_id
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @occurrences }
-      format.xls do
-      render :xls => @occurrences,
-                     :columns => [ :created_at ,:description, :target_id, :defect_id, :user_id ],
-                     :headers => %w[ Date Comment Process Defect User]
-      end
+      format.xls #do
+      #render :xls => @occurrences,
+      #              :columns => [ :created_at ,:description, :target_id, :defect_id, :user_id ],
+      #              :headers => %w[ Date Comment Process Defect User]
+      #end
     end
   end
 
@@ -46,10 +46,12 @@ class OccurrencesController < ApplicationController
       @occurrence = Occurrence.new(params[:occurrence])
       @occurrence.user_id = current_user.id
       @occurrence.company_id = current_user.company_id
+      @target = Target.find(@occurrence.target_id) 
+
       if @occurrence.defect_id != nil
         @defect = Defect.find(@occurrence.defect_id)
-        @target = Target.find(@defect.target_id) 
-        @occurrence.target_id = @target.id
+        #@target = Target.find(@defect.target_id) 
+        #@occurrence.target_id = @target.id
       else
         flash.now[:error] = 'Warning ! Please select a Defect'
       end
@@ -88,6 +90,15 @@ class OccurrencesController < ApplicationController
       format.html { redirect_to occurrences_path }
       format.json { head :no_content }
     end
+  end
+
+  def remove_all
+    #@occurrence = Occurrence.new(params[:occurrence])
+    #@target = Target.find(@occurrence.target_id) 
+    @target_occurrences = Occurrence.where("company_id = ?", current_user.company_id)
+    @target_occurrences.delete_all
+    flash[:notice] = "You have removed all occurrences for this process !"
+    redirect_to targets_path
   end
 
       private

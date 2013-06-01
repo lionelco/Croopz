@@ -16,6 +16,7 @@ class TargetsController < ApplicationController
     @target = Target.find(params[:id])
     @defects = Defect.where("target_id = ?", @target.id)
     @occurrence = Occurrence.new
+    @occurrence.target_id = @target.id
     @suggestion = Suggestion.new
     @suggestion.target_id = @target.id
     
@@ -97,12 +98,6 @@ end
       format.html { redirect_to targets_path }
       format.json { head :no_content }
     end
-  end
-
-  def remove_all
-    Occurrences.delete_all(:target_id => @target.id)
-    flash[:notice] = "You have removed all occurrences!"
-    redirect_to targets_path
   end
 
 

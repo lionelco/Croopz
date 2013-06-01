@@ -9,19 +9,16 @@ SampleApp::Application.routes.draw do
     resources :users
     resources :sessions,   only: [:new, :create, :destroy]
     resources :microposts, only: [:create, :destroy]
-
-    resources :companies
+    resources :companies 
     resources :targets
     resources :defects
-    resources :occurrences
+    resources :occurrences do
+      collection do
+        get 'remove_all'
+      end
+    end
+
     resources :suggestions
-  #resources :companies, shallow: true do
-  #  resources :targets do 
-  #    resources :defects do
-  #      resources :occurrences
-  #    end
-  #  end
-  #end
   
   #root to: 'targets#index'
   root to: 'static_pages#home'
@@ -33,11 +30,7 @@ SampleApp::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
 
-  resources :targets do
-    collection do
-      get 'remove_all'
-    end
-  end
+
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.

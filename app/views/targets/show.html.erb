@@ -16,8 +16,8 @@
   <%= form_for(@occurrence) do |o| %>
 
   <div class="field">
-    <%= o.label :description %><br />
-    <%= o.text_area :description, :rows => "1"  %>
+    <%#= o.label :description %><br />
+    <%= o.text_area :description, :placeholder => "Description", :rows => "1"  %>
   </div>
 
   <div class="field"><br />
@@ -39,7 +39,7 @@
 <div id="demo" class="collapse">
     <%= form_for(@suggestion) do |s| %><br>
         <div class="field">
-          <%= s.text_area :description, :rows => "1"  %>
+          <%= s.text_area :description, :placeholder => "Describe your suggestion...", :rows => "1"  %>
         </div>
         <div class="actions">
           <%= s.submit "Send the suggestion", class: "btn btn-primary" %>
@@ -82,8 +82,7 @@
     </p>
     <% if current_user.admin? && current_user.company_id != nil %>
       <p align=right>
-        <%= link_to "Remove All", remove_all_targets_path(@target.id), :confirm => 'Are you
-sure?', :method => :get , class: "btn btn-danger" %>
+        <%#= link_to "Remove All", remove_all_occurrences_path, :confirm => 'Are you sure?', :method => :get , class: "btn btn-danger" %>
       </p>
     <% end %>
   </div>
