@@ -1,0 +1,22 @@
+<table class="table table-hover">
+  <tr>
+    <th>User</th>
+    <th>Description</th>
+    <th>Target</th>
+    <th>Company</th>
+    <th>Date</th>
+  </tr>
+
+<% @suggestions.each do |suggestion| %>
+  <tr>
+    <td><%= User.find(occurrence.user_id).name %></td>
+    <td><%= suggestion.description %></td>
+    <td><%= Target.find(suggestion.target_id).name %></td>
+    <td><%= Company.find(suggestion.company_id).name %></td>
+    <td><%= suggestion.created_at %></td>
+
+  </tr>
+<% end %>
+</table>
+
+<br />

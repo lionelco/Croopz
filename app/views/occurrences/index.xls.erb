@@ -1,0 +1,24 @@
+<table class="table table-hover">
+  <tr>
+    <th>Date</th>
+    <th>Company</th>
+    <th>User</th>
+    <th>Process</th>
+    <th>Defect</th>
+    <th>Description</th>
+  </tr>
+
+<% @occurrences.each do |occurrence| %>
+  <tr>
+    <td><%= occurrence.created_at %></td>
+    <td><%= Company.find(occurrence.company_id).name %> </td>
+    <td><%= User.find(occurrence.user_id).name %></td>
+    <td><%= Target.find(occurrence.target_id).name %></td>
+    <td><%= Defect.find(occurrence.defect_id).name %></td>
+    <td><%= occurrence.description %></td>
+  </tr>
+<% end %>
+
+</table>
+<br />
+

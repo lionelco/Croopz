@@ -1,0 +1,37 @@
+<h1>Listing suggestions</h1>
+
+<table class="table table-hover">
+  <p align=right>
+    <%= link_to 'Export to Excel', url_for(:format => 'xls'), class: "btn btn-success"%>
+  </p>    
+  <tr>
+    <th>User</th>
+    <th>Description</th>
+    <th>Target</th>
+    <th>Company</th>
+    <th>Date</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @suggestions.each do |suggestion| %>
+  <tr>
+    <td><%= User.find(suggestion.user_id).name %></td>
+    <td><%= suggestion.description %></td>
+    <td><%= Target.find(suggestion.target_id).name %></td>
+    <td><%= Company.find(suggestion.company_id).name %></td>
+    <td><%= suggestion.created_at %></td>
+    <td>
+      <% if current_user.admin? && current_user.company_id != nil %>
+      <%= link_to 'Edit', edit_suggestion_path(suggestion), class: "btn" %>
+      <% end %>
+      <% if current_user.admin? && current_user.company_id != nil %>
+      <%= link_to 'Destroy', suggestion, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger" %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

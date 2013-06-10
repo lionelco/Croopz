@@ -1,0 +1,25 @@
+
+<p>
+  <b>Name:</b>
+  <%= @company.name %>
+</p>
+
+<p>
+  <b>Owner :</b>
+  <%= @company.created_by %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @company.description %>
+</p>
+
+
+<%= link_to "New Process", new_target_path(:company_id => @company.id), 
+							 class: "btn" %>
+  
+    <% if current_user.admin? && current_user.company_id != nil %>
+      <p align=right>
+        <%= link_to "Remove All Occurrences", remove_all_occurrences_path, :confirm => 'Are you sure?', :method => :get , class: "btn btn-danger" %>
+      </p>
+    <% end %>

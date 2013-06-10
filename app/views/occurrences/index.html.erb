@@ -1,0 +1,44 @@
+
+<!-- <h1>Listing occurrences</h1> -->
+
+<table class="table table-hover">
+  <p align=right>
+    <%= link_to 'Export to Excel', url_for(:format => 'xls'), class: "btn btn-success"%>
+  </p>    
+  <tr>
+    <th>Number</th>
+    <th>Description</th>
+    <th>Defect</th>
+    <th>Target</th>
+    <th>Company</th>
+    <th>User</th>
+    <th>Created at</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @occurrences.each do |occurrence| %>
+  <tr>
+    <td><%= occurrence.number %></td>
+    <td><%= occurrence.description %></td>
+    <td><%#=  occurrence.defect_id %>  <%= Defect.find(occurrence.defect_id).name %></td>
+    <td><%#=  occurrence.target_id %> <%= Target.find(occurrence.target_id).name %></td>
+    <td><%#=  occurrence.company_id %>  <%= Company.find(occurrence.company_id).name %> </td>
+    <td><%#=  occurrence.user_id %> <%= User.find(occurrence.user_id).name %></td>
+    <td><%= occurrence.created_at %></td>
+    <td>
+        <% if current_user.admin? && current_user.company_id != nil %> 
+        <%= link_to 'Edit', edit_occurrence_path(occurrence), class: "btn" %>
+        <% end %>
+    </td>
+    <td>
+        <% if current_user.admin? && current_user.company_id != nil %>
+        <%= link_to 'Destroy', occurrence, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+        <% end %>
+    </td>
+
+  </tr>
+<% end %>
+</table>
+
+<br />
