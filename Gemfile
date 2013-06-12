@@ -7,7 +7,8 @@ gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem "nested_form"
-gem 'activeadmin'
+#gem 'activeadmin'
+gem 'activeadmin', '0.5.1'
 gem 'meta_search', '>= 1.1.0.pre'
 gem 'lazy_high_charts'
 gem 'to_xls', '~> 1.0.0'
@@ -24,7 +25,8 @@ group :assets do
   gem 'uglifier', '1.2.3'
 end
 
-gem 'jquery-rails'
+#gem 'jquery-rails'
+gem "jquery-rails", "2.3.0"
 
 group :test, :development do
   gem 'rspec-rails', '2.10.0'

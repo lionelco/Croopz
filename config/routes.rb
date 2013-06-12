@@ -1,11 +1,9 @@
 SampleApp::Application.routes.draw do
 
-  
-
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
-  
+
     resources :users
     resources :sessions,   only: [:new, :create, :destroy]
     resources :microposts, only: [:create, :destroy]
@@ -17,11 +15,10 @@ SampleApp::Application.routes.draw do
         get 'remove_all'
       end
     end
-
     resources :suggestions
   
-  #root to: 'targets#index'
   root to: 'static_pages#home'
+  #root to: 'targets#index'
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
