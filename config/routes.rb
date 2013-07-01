@@ -18,7 +18,6 @@ SampleApp::Application.routes.draw do
     resources :suggestions
   
   root to: 'static_pages#home'
-  #root to: 'targets#index'
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
