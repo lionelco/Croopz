@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(:version => 20130528144941) do
     t.datetime "updated_at",                         :null => false
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin",           :default => false
+    t.boolean  "admin",           :default => true
     t.integer  "company_id"
   end
 

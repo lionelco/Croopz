@@ -7,12 +7,12 @@ class UsersController < ApplicationController
     @occurrences = Occurrence.where("company_id = ?", current_user.company_id)
 
 
-        @h = LazyHighCharts::HighChart.new('graph', style: '') do |f|
-         f.options[:chart][:defaultSeriesType] = "line"
-         f.options[:plotOptions] = {areaspline: {pointInterval: 1.day, pointStart: 10.days.ago}}
-         f.series(:name=>'John', :data=>[3, 20, 3, 5, 4, 10, 12 ,3, 5,6,7,7,80,9,9])
-         f.xAxis(type: 'datetime', dateTimeLabelFormats: {month: '%b %Y'}) #{day: '%e of %b'}
-        end
+     #   @h = LazyHighCharts::HighChart.new('graph', style: '') do |f|
+     #    f.options[:chart][:defaultSeriesType] = "line"
+     #    f.options[:plotOptions] = {areaspline: {pointInterval: 1.day, pointStart: 10.days.ago}}
+     #    f.series(:name=>'John', :data=>[3, 20, 3, 5, 4, 10, 12 ,3, 5,6,7,7,80,9,9])
+     #    f.xAxis(type: 'datetime', dateTimeLabelFormats: {month: '%b %Y'}) #{day: '%e of %b'}
+     #   end
 
         @user = User.find(params[:id])
         @microposts = @user.microposts.paginate(page: params[:page])
@@ -24,7 +24,6 @@ class UsersController < ApplicationController
     
     def index
       @users = User.where("company_id = ?", current_user.company_id).paginate(page: params[:page])
-      #@users = User.paginate(page: params[:page])
     end
 
     def create
