@@ -42,6 +42,7 @@ class UsersController < ApplicationController
         end 
       end   
     else
+      @user.admin = true
       if @user.save
         u_sign_in @user
         flash[:success] = "Welcome to the Croopz!"
