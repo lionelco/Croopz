@@ -24,7 +24,7 @@
     <td><%#=  occurrence.defect_id %>  <%= Defect.find(occurrence.defect_id).name %></td>
     <td><%#=  occurrence.target_id %> <%= Target.find(occurrence.target_id).name %></td>
     <td><%#=  occurrence.company_id %>  <%= Company.find(occurrence.company_id).name %> </td>
-    <td><%#=  occurrence.user_id %> <%= User.find(occurrence.user_id).name %></td>
+    <td><%#=  occurrence.user_id %> <%= User.find(occurrence.user_id).email %></td>
     <td><%= occurrence.created_at %></td>
     <td>
         <% if current_user.admin? && current_user.company_id != nil %> 

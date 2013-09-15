@@ -38,10 +38,11 @@ class DefectsController < ApplicationController
       @defect = Defect.new(params[:defect])
       @defect.user_id = current_user
       @defect.company_id = current_user.company_id
-
+      @target = Target.find(@defect.target_id) 
+      
     respond_to do |format|
       if @defect.save
-        format.html { redirect_to @defect, notice: 'Defect was successfully created.' }
+        format.html { redirect_to @target, notice: 'Defect was successfully created.' }
         format.json { render json: @defect, status: :created, location: @defect }
       else
         format.html { render action: "new" }
