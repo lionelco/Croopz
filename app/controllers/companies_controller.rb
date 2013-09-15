@@ -3,11 +3,13 @@ class CompaniesController < ApplicationController
   before_filter :admin_user
 
   def index
-    @companies = Company.where("company_id = ?", current_user.company_id)
+    if current_user.company_id != nil
+      @companies = Company.where("company_id = ?", current_user.company_id)
     
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @companies }
+    end
     end
   end
 
