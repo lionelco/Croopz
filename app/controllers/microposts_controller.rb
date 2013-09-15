@@ -1,5 +1,6 @@
 class MicropostsController < ApplicationController
-    before_filter :signed_in_user
+    before_filter :authenticate_user!
+    before_filter :admin_user,     only: [:new, :create, :edit, :update, :destroy]
     
     def create
         @micropost = current_user.microposts.build(params[:micropost])

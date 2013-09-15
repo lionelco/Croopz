@@ -10,7 +10,6 @@
   </p>
   <p>
     <%= collection_select(:impact ,:value, @defects , :id, :name,{:prompt => 'Select your Defect...'}, {:onchange => "validateform()"}) %>
-    <%#= select_tag('defect',options_from_collection_for_select(@defects, :id, :name, @selected_defect)) %>
   </p>
 
   <%= form_for(@occurrence) do |o| %>

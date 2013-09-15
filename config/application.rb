@@ -67,5 +67,7 @@ module SampleApp
 
     #LCO: To include these js files on each of our pages
     #config.action_view.JavaScript_expansions[:defaults] = %w(jquery rails application)  
+
+    config.assets.initialize_on_precompile = false
   end
 end

@@ -1,59 +1,31 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
-  before_filter :correct_user,   only: [:edit, :update]
-  before_filter :admin_user,     only: :destroy
-
-    def show
-    @occurrences = Occurrence.where("company_id = ?", current_user.company_id)
-
-
-     #   @h = LazyHighCharts::HighChart.new('graph', style: '') do |f|
-     #    f.options[:chart][:defaultSeriesType] = "line"
-     #    f.options[:plotOptions] = {areaspline: {pointInterval: 1.day, pointStart: 10.days.ago}}
-     #    f.series(:name=>'John', :data=>[3, 20, 3, 5, 4, 10, 12 ,3, 5,6,7,7,80,9,9])
-     #    f.xAxis(type: 'datetime', dateTimeLabelFormats: {month: '%b %Y'}) #{day: '%e of %b'}
-     #   end
-
-        @user = User.find(params[:id])
-        @microposts = @user.microposts.paginate(page: params[:page])
-    end
- 
-    def new
-      @user = User.new
-    end
-    
+  before_filter :authenticate_user!
+  before_filter :admin_user
+  
     def index
-      @users = User.where("company_id = ?", current_user.company_id).paginate(page: params[:page])
+        @users = User.where("company_id = ?", current_user.company_id).paginate(page: params[:page])
     end
 
-    def create
-      @user = User.new(params[:user])
-
-    if signed_in?
-      if current_user.admin? && current_user.company_id != nil
-      @user.company_id = current_user.company_id
-      @user.admin = false
-        if @user.save
-          u_sign_in current_user
-          flash[:success] = "A new user has been created!"
-          redirect_to @user
-        else
-          render 'new'
-        end 
-      end   
-    else
-      @user.admin = true
-      if @user.save
-        u_sign_in @user
-        flash[:success] = "Welcome to the Croopz!"
-        redirect_to @user
-      else
-        render 'new'
+    def new
+        @user = User.new
+      
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @target }
       end
     end
+
+    def show
+    @user = User.find(params[:id])
+
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @user }
+      end
     end
 
     def edit
+      @user = User.find(params[:id])
     end
     
     def destroy
@@ -64,21 +36,19 @@ class UsersController < ApplicationController
 
     def update
     if @user.update_attributes(params[:user])
-      flash[:success] = "Profile updated"
-      u_sign_in @user
+        flash[:success] = "Profile updated"
         render 'companies/new'
-    else
-      render 'edit'
+      else
+        render 'edit'
+      end
     end
-  end
-
     
   private
 
     def signed_in_user
-      unless signed_in?
+      unless user_signed_in?
         store_location
-        redirect_to signin_path, notice: "Please sign in."
+        redirect_to new_user_session_path, notice: "Please sign in."
       end
     end
 

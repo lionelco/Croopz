@@ -1,7 +1,6 @@
 class OccurrencesController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
-  #before_filter :correct_user,   only: [:edit, :update]
-  before_filter :admin_user,     only: [:index, :edit, :update, :destroy]
+  before_filter :authenticate_user!
+  before_filter :admin_user,     only: [:new, :edit, :update, :destroy]
 
   def index
 
@@ -50,10 +49,6 @@ class OccurrencesController < ApplicationController
 
       if @occurrence.defect_id != nil
         @defect = Defect.find(@occurrence.defect_id)
-        #@target = Target.find(@defect.target_id) 
-        #@occurrence.target_id = @target.id
-      else
-        flash.now[:error] = 'Warning ! Please select a Defect'
       end
 
     respond_to do |format|
@@ -61,7 +56,7 @@ class OccurrencesController < ApplicationController
         format.html { redirect_to target_path(@target), notice: 'Occurrence was successfully created.' }
         format.json { render json: @occurrence, status: :created, location: @occurrence }
       else
-        format.html { redirect_to root_path }
+        format.html { redirect_to root_path, notice: 'Occurrence WAS NOT created.'  }
         format.json { render json: @occurrence.errors, status: :unprocessable_entity }
       end
     end
@@ -104,7 +99,7 @@ class OccurrencesController < ApplicationController
       private
 
     def signed_in_user
-      unless signed_in?
+      unless user_signed_in?
         store_location
         redirect_to signin_path, notice: "Please sign in."
       end

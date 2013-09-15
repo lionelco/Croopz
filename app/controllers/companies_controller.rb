@@ -1,8 +1,6 @@
 class CompaniesController < ApplicationController
-
-  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
-  #before_filter :correct_user,   only: [:edit, :update]
-  before_filter :admin_user,     only: :destroy
+  before_filter :authenticate_user!
+  before_filter :admin_user
 
   def index
     @companies = Company.where("company_id = ?", current_user.company_id)
@@ -37,20 +35,21 @@ class CompaniesController < ApplicationController
   end
 
   def create
+
     @company = Company.new(params[:company])
     @company.created_by = current_user
 
     respond_to do |format|
       if @company.save
         current_user.update_attribute(:company_id, @company.id)
-        u_sign_in current_user
+        #user_signed_in
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render json: @company, status: :created, location: @company }
       else
         format.html { render action: "new" }
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
-    end
+    end 
   end
 
   def update
@@ -80,7 +79,7 @@ class CompaniesController < ApplicationController
         private
 
     def signed_in_user
-      unless signed_in?
+      unless user_signed_in?
         store_location
         redirect_to signin_path, notice: "Please sign in."
       end

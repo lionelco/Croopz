@@ -1,6 +1,5 @@
 class TargetsController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
-  #before_filter :correct_user,   only: [:edit, :update]
+  before_filter :authenticate_user!
   before_filter :admin_user,     only: [:new, :create, :edit, :update, :destroy]
 
   def index
@@ -104,7 +103,7 @@ end
     private
 
     def signed_in_user
-      unless signed_in?
+      unless user_signed_in?
         store_location
         redirect_to signin_path, notice: "Please sign in."
       end

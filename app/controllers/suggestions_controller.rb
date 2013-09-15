@@ -1,4 +1,6 @@
 class SuggestionsController < InheritedResources::Base
+  before_filter :authenticate_user!
+  before_filter :admin_user,     only: [:new, :edit, :update, :destroy]
 
   def create
     @suggestion = Suggestion.new(params[:suggestion])
@@ -8,7 +10,7 @@ class SuggestionsController < InheritedResources::Base
 
     respond_to do |format|
       if @suggestion.save
-        format.html { redirect_to target_path(@target), notice: 'Suggestion was successfully created.' }
+        format.html { redirect_to target_path(@target), notice: 'Suggestion was successfully created. The Owner will review it' }
         format.json { render json: @suggestion, status: :created, location: @suggestion }
       else
         format.html { render action: "new" }
@@ -31,6 +33,24 @@ class SuggestionsController < InheritedResources::Base
       #end
     end
   end
+
+      private
+
+    def signed_in_user
+      unless user_signed_in?
+        store_location
+        redirect_to signin_path, notice: "Please sign in."
+      end
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
+
+    def admin_user
+      redirect_to(root_path) unless current_user.admin?
+    end
   
 end
 
