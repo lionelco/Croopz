@@ -4,7 +4,7 @@ class SuggestionsController < InheritedResources::Base
 
   def create
     @suggestion = Suggestion.new(params[:suggestion])
-    @suggestion.user_id = current_user
+    @suggestion.user_id = current_user.id
     @suggestion.company_id = current_user.company_id
     @target = Target.find(@suggestion.target_id) 
 

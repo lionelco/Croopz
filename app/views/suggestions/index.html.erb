@@ -16,7 +16,7 @@
 
 <% @suggestions.each do |suggestion| %>
   <tr>
-    <td><%= User.find(suggestion.user_id).email %></td>
+    <td><%= User.find(suggestion.user_id).email%></td>
     <td><%= suggestion.description %></td>
     <td><%= Target.find(suggestion.target_id).name %></td>
     <td><%= Company.find(suggestion.company_id).name %></td>

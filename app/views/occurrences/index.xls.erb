@@ -12,7 +12,7 @@
   <tr>
     <td><%= occurrence.created_at %></td>
     <td><%= Company.find(occurrence.company_id).name %> </td>
-    <td><%= User.find(occurrence.user_id).name %></td>
+    <td><%= User.find(occurrence.user_id).email %></td>
     <td><%= Target.find(occurrence.target_id).name %></td>
     <td><%= Defect.find(occurrence.defect_id).name %></td>
     <td><%= occurrence.description %></td>
