@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
   before_filter :admin_user
-  
+
     def index
         @users = User.where("company_id = ?", current_user.company_id).paginate(page: params[:page])
     end
@@ -23,6 +23,10 @@ class UsersController < ApplicationController
         format.json { render json: @user }
       end
     end
+
+    #def create
+    #  User.create!({:email => params[:email], :admin => [false], :company_id => [current_user.company_id], :password => params[:password], :password_confirmation => params[:password_confirmation] })
+    #end
 
     def edit
       @user = User.find(params[:id])
