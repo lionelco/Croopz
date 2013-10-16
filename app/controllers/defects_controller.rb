@@ -4,7 +4,6 @@ class DefectsController < ApplicationController
   
   def index
     @defects = Defect.where("company_id = ?", current_user.company_id)
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @defects }
@@ -13,7 +12,7 @@ class DefectsController < ApplicationController
 
   def show
     @defect = Defect.find(params[:id])
-
+    @target = Target.find(@defect.target_id) 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @defect }

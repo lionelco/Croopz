@@ -1,25 +1,27 @@
-<p>
-  <b>Name:</b>
-  <%= @defect.name %>
-</p>
+<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Description:</b>
-  <%= @defect.description %>
-</p>
+<div class="row">
+  <div class="span6 offset3">
 
-<p>
-  <b>Target:</b>
-  <%= @defect.target_id %>
-</p>
+<h1><%= @defect.name %></h1><br/>
 
-<p>
-  <b>Nb of Occurrence:</b>
-  <%#= Occurrence.where("defect_id = ?", @defect.id).count %>
-</p>
+<h4>
+<table class="table">
+<tr>
+<td>Description :</td>
+<td><%= @defect.description %></td>
+</tr>
+<tr>
+<td>Process :</td>
+<td><%= @target.name %></td>
+</tr>
+<tr>
+<td>Created at :</td>
+<td><%= @defect.created_at %></td>
+</tr>
+</table> 
 
-<%#= link_to "Create a new Occurrence",new_defect_occurrence_path(:defect_id => @defect.id), 
-							 class: "btn btn-large btn-primary" %>
+</h4>
 
-<%= link_to "Create a new Occurrence",new_occurrence_path(:defect_id => @defect.id), 
-							 class: "btn" %>
+  </div>
+</div>

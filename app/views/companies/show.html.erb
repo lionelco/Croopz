@@ -1,25 +1,32 @@
-<div class="alert alert-block">
-<button type="button" class="close" data-dismiss="alert">&times;</button>
-  <h4>
-    Please <%= link_to "Create a new process", new_target_path(:company_id => @company.id) %>
-  </h4>
+<h4>
+<div class="row">
+  <div class="span6 offset3">
+
+
+<h1><%= @company.name %></h1><br/>
+<table class="table">
+<tr>
+<td>Description :</td>
+<td><%= @company.description %></td>
+</tr>
+<tr>
+<td>Company users :</td>
+<td><%= @company_users %></td>
+</tr>
+<tr>
+<td>Created at :</td>
+<td><%= @company.created_at %></td>
+</tr>
+</table> 
+
+  </div>
 </div>
-<p align=right>
-  <%= link_to "New Process", new_target_path(:company_id => @company.id), class: "btn" %>
-</p>
-<p align=left>
-  <b>Name:</b>
-  <%= @company.name %>
-</p>
+<br/><br/><br/>
+ <i class="icon-info-sign"></i>  To create a new process click on this button : <br/><br/>
+</h4>
+  <%= link_to "New Process", new_target_path(:company_id => @company.id), class: "btn btn-primary" %><br/><br/>
 
-<p>
-  <b>Description:</b><br>
-  <%= @company.description %>
-</p>
-<br>
-    <% if current_user.admin? && current_user.company_id != nil %>
-
-<p align=right>
-  <%= link_to "Remove All Occurrences", remove_all_occurrences_path, :confirm => 'Are you sure?', :method => :get , class: "btn btn-danger" %>
-</p>
+<h4><i class="icon-trash"></i>  To delete all occurrences click on this button :</h4> <br/>
+<% if current_user.admin? && current_user.company_id != nil %>
+  <%= link_to "Delete All Occurrences", remove_all_occurrences_path, :confirm => 'Are you sure?', :method => :get , class: "btn btn-danger" %>
 <% end %>

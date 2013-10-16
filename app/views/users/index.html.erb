@@ -5,6 +5,7 @@
 <% @users.each do |user| %>
   <tr>
     <td><%= link_to user.email , user %></td>
+    <td><%= user.sign_in_count %></td>
     <% if current_user.admin? && !current_user?(user) %>
       <td><%= link_to 'Edit', edit_user_path(user), class: "btn" %></td>
       <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>

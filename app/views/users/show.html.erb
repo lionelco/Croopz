@@ -1,5 +1,37 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row">
+  <div class="span6 offset3">
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+
+<h1><%= @user.email  %></h1><br/>
+<h4>
+<table class="table">
+<tr>
+<td>Global occurrences number :</td>
+<td><%= @user_occurences %></td>
+</tr>
+<tr>
+<td>Sign in count :</td>
+<td><%= @user.sign_in_count %></td>
+</tr>
+<tr>
+<td>Last sign in date:</td>
+<td><%= @user.last_sign_in_at %></td>
+</tr>
+<tr>
+<td>Created at :</td>
+<td><%= @user.created_at %></td>
+</tr>
+</table> 
+
+</h4>
+ <br/>
+ <br/>
+ <br/>
+</h3>
+<%#= link_to 'Edit', edit_user_path(@user) %>
+<%#= link_to 'Back', users_path %>
+
+  </div>
+</div>

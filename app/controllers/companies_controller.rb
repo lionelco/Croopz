@@ -15,6 +15,7 @@ class CompaniesController < ApplicationController
 
   def show
     @company = Company.find(params[:id])
+    @company_users = User.where("company_id = ?", current_user.company_id).count
 
     respond_to do |format|
       format.html # show.html.erb
