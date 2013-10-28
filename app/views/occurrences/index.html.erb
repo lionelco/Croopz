@@ -6,10 +6,9 @@
     <%= link_to 'Export to Excel', url_for(:format => 'xls'), class: "btn btn-success"%>
   </p>    
   <tr>
-    <th>Number</th>
     <th>Description</th>
     <th>Defect</th>
-    <th>Target</th>
+    <th>Process</th>
     <th>Company</th>
     <th>User</th>
     <th>Created at</th>
@@ -19,7 +18,6 @@
 
 <% @occurrences.each do |occurrence| %>
   <tr>
-    <td><%= occurrence.number %></td>
     <td><%= occurrence.description %></td>
     <td><%= Defect.find(occurrence.defect_id).name %></td>
     <td><%= Target.find(occurrence.target_id).name %></td>

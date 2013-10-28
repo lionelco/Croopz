@@ -10,7 +10,7 @@ class SuggestionsController < InheritedResources::Base
 
     respond_to do |format|
       if @suggestion.save
-        format.html { redirect_to target_path(@target), notice: 'Suggestion was successfully created. The Owner will review it' }
+        format.html { redirect_to target_path(@target), notice: 'Suggestion was successfully created. The Owner will review it.' }
         format.json { render json: @suggestion, status: :created, location: @suggestion }
       else
         format.html { render action: "new" }
