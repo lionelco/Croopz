@@ -6,10 +6,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     super
+  if current_user != nil
     if current_user.admin == false
       current_user.admin = true
       current_user.save
     end
+  end
   end
 
 end
