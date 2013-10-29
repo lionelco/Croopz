@@ -157,10 +157,6 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
-#impact_value {
-  height:30px;
-}
-
 #error_explanation {
   color: #f00;
   ul {
