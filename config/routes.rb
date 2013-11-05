@@ -16,7 +16,11 @@ SampleApp::Application.routes.draw do
         get 'remove_all'
       end
     end
-    resources :suggestions
+    resources :suggestions do
+      collection do
+        get 'remove_all'
+      end
+    end
 
   root to: 'static_pages#home'
 

@@ -8,7 +8,7 @@
   <p>
     <h6><%= @target.description %></h6><br>
   </p>
-  <p>  
+  <p>
     <%= collection_select(:impact ,:value, @defects , :id, :name,{:prompt => 'Select your Defect...'}, {:onchange => "validateform()"}) %>
   </p>
 
@@ -57,22 +57,9 @@
     <table align=right>
       <tr>
         <td align=left>  
-          <%= link_to "Add new Defect", new_defect_path(:target_id => @target.id), class: "btn" %>
+          <%= link_to "Add defect choice", new_defect_path(:target_id => @target.id), class: "btn" %>
         </td>
-    <!--
-    <td align= left>  
-         <div class="btn-group">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              Data list
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li></i><%= link_to "Data", occurrences_path %> </li>
-              <li><%= link_to "Suggestions", suggestions_path %></li>
-            </ul>
-          </div>
-        </td>
-    --> 
+
       </tr>
     </table><br><br>
 

@@ -88,11 +88,9 @@ class OccurrencesController < ApplicationController
   end
 
   def remove_all
-    #@occurrence = Occurrence.new(params[:occurrence])
-    #@target = Target.find(@occurrence.target_id) 
     @target_occurrences = Occurrence.where("company_id = ?", current_user.company_id)
     @target_occurrences.delete_all
-    flash[:notice] = "You have removed all occurrences for this process !"
+    flash[:notice] = "You have removed all occurrences collected in your company !"
     redirect_to targets_path
   end
 

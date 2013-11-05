@@ -24,9 +24,10 @@
 <br/><br/><br/>
  <i class="icon-info-sign"></i>  To create a new process click on this button : <br/><br/>
 </h4>
-  <%= link_to "New Process", new_target_path(:company_id => @company.id), class: "btn btn-primary" %><br/><br/>
+  <%= link_to "Create a Process", new_target_path(:company_id => @company.id), class: "btn btn-primary" %><br/><br/>
 
-<h4><i class="icon-trash"></i>  To delete all occurrences click on this button :</h4> <br/>
+<h4><i class="icon-trash"></i>  To delete all data collected click on these buttons :</h4> <br/>
 <% if current_user.admin? && current_user.company_id != nil %>
+  <%= link_to "Delete All Suggestions", remove_all_suggestions_path, :confirm => 'Are you sure?', :method => :get , class: "btn btn-danger" %> ||
   <%= link_to "Delete All Occurrences", remove_all_occurrences_path, :confirm => 'Are you sure?', :method => :get , class: "btn btn-danger" %>
 <% end %>

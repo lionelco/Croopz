@@ -34,6 +34,13 @@ class SuggestionsController < InheritedResources::Base
     end
   end
 
+  def remove_all
+    @target_suggestions = Suggestion.where("company_id = ?", current_user.company_id)
+    @target_suggestions.delete_all
+    flash[:notice] = "You have removed all suggestions collected in your company !"
+    redirect_to targets_path
+  end
+
       private
 
     def signed_in_user
