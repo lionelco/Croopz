@@ -14,6 +14,7 @@ gem 'lazy_high_charts'
 gem 'to_xls', '~> 1.0.0'
 gem 'devise',           '>= 2.0.0'
 gem 'devise_invitable', '~> 1.1.0'
+gem 'metamagic'
 
 group :development, :test do
   gem 'sqlite3', '1.3.5'
