@@ -12,8 +12,27 @@
     <%= csrf_meta_tags %>
     <%= render 'layouts/shim' %>    
   </head>
-  <body>
+  <% if !user_signed_in? %>
+  <script>
+    var ROOT_URL = window.location.origin+'/';
+
+    function setBackgroundImg () {
+      var main_page_body = document.getElementById("body");
+      if (window.document.URL == ROOT_URL) {
+        main_page_body.style.background = "url(../assets/mac.jpg) no-repeat center center fixed";
+        main_page_body.style.backgroundSize = "cover";
+        main_page_body.style.WebkitBackgroundSize = "cover";
+        main_page_body.style.MozBackgroundSize = "cover";
+        main_page_body.style.OBackgroundSize = "cover";
+      }
+    }
+    window.onload=setBackgroundImg;
+  </script>
+  <% end %>
+  <body id="body">
+    
     <%= render 'layouts/header' %>
+
     <div class="container">
       <% flash.each do |key, value| %>
         <%= content_tag(:div, value, class: "alert alert-#{key}") %>
@@ -23,5 +42,8 @@
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
     </div>
+    </div>
   </body>
+     
 </html>
+

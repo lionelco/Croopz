@@ -1,3 +1,4 @@
+
 <% if user_signed_in? %>
   <% if current_user.company_id == nil %>
     <div class="alert alert-block">
@@ -15,16 +16,18 @@
 
 <% else %>
 
-  <div class="center hero-unit">
+  <div class="center hero-unit"> 
+
     <h1>Simplify the data collection</h1><br>
-      <%= link_to "Sign up now!", new_user_registration_path, 
-                                class: "btn btn-large btn-primary" %>
- </div>
-      <h2>Create efficient action plans, increase profitability and keep everyone in the loop.
+          <h2>Create efficient action plans, increase profitability and keep everyone in the loop.
       <br>Gain time so you can focus on your business.
       <br>
-<br> 
+      <br> 
       </h2>
+      <%= link_to "Sign up now!", new_user_registration_path, 
+                                class: "btn btn-large btn-primary" %>
+</div>
+
       <!-- Button to trigger modal -->
 <a href="#myModal" role="button" class="btn btn-large" data-toggle="modal">Demo</a>
  
@@ -45,11 +48,11 @@
 </div>
 
 
-
 <br>
 <br> 
 <br>
 <br>
+
 <% end %>
 
 <script>

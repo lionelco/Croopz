@@ -10,6 +10,7 @@ $grayMediumLight: #eaeaea;
   box-sizing: border-box;
 }
 
+
 /* universal */
 
 html {
@@ -18,6 +19,10 @@ html {
 
 body {
   padding-top: 60px;
+  
+}
+.hero-unit{
+  background-color:rgba(245, 245, 245, 0.82);
 }
 
 section {
